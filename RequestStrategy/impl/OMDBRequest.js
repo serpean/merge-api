@@ -1,14 +1,17 @@
-const axios = require('../../axiosConfig');
+const axios = require("../../axiosConfig");
 
 class OMDBRequest {
   doRequest(id) {
-      console.log(process.env.OMDB_API_KEY)
     return axios
-      .get(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.OMDB_API_KEY}`)
+      .get(
+        `http://www.omdbapi.com/?i=${id}$plot=full&apikey=${
+          process.env.OMDB_API_KEY
+        }`
+      )
       .then(response => {
         const { Response } = response.data;
-        if (Response === 'False') {
-          const error = new Error('Invalid ID');
+        if (Response === "False") {
+          const error = new Error("Invalid ID");
           error.statusCode = 404;
           throw error;
         }

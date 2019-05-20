@@ -1,13 +1,13 @@
-const axios = require('../../axiosConfig');
+const axios = require("../../axiosConfig");
 
-class BookRequest {
+class GBRequest {
   doRequest(id) {
     return axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${id}`)
       .then(response => {
         const { totalItems, items } = response.data;
         if (totalItems !== 1) {
-          const error = new Error('Invalid ID');
+          const error = new Error("Invalid ID");
           error.statusCode = 404;
           throw error;
         }
@@ -23,4 +23,4 @@ class BookRequest {
   }
 }
 
-module.exports = BookRequest;
+module.exports = GBRequest;
