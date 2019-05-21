@@ -4,6 +4,15 @@ const RequestStrategyFactory = require("./RequestStrategyFactory/RequestStrategy
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'OPTIONS, GET'
+    );
+    next();
+  });
+
 app.get("/:type/:id", async (req, res, next) => {
   const type = req.params.type;
   const id = req.params.id;
@@ -44,4 +53,4 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).json({ message: err.message });
 });
 
-app.listen(3000, res => console.log(`Server on in http://localhost:3000`));
+app.listen(3030, res => console.log(`Server on in http://localhost:3030`));
