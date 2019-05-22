@@ -34,7 +34,7 @@ class SearchAllRequest {
             ...cleanBooks.search,
             ...cleanMovies.search,
             ...cleanGames.search
-          ].sort((a, b) => a.title < b.title);
+          ].sort((a, b) => a.title > b.title);
           const lengthsOutput = [
             cleanGames.totalResults,
             cleanBooks.totalResults,

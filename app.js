@@ -5,13 +5,10 @@ const RequestStrategyFactory = require("./RequestStrategyFactory/RequestStrategy
 const app = express();
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'OPTIONS, GET'
-    );
-    next();
-  });
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET");
+  next();
+});
 
 app.get("/:type/:id", async (req, res, next) => {
   const type = req.params.type;
@@ -20,7 +17,6 @@ app.get("/:type/:id", async (req, res, next) => {
     const factory = new RequestStrategyFactory();
     const requestStrategy = factory.createRequestStrategy(type);
     const result = await requestStrategy.doRequest(id);
-    console.log(result);
     res.json(result);
   } catch (err) {
     if (!err.statusCode) err.statusCode = 500;
@@ -50,7 +46,7 @@ app.get("/", async (req, res, next) => {
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(err.statusCode).json({ message: err.message });
+  res.status(err.statusCode).json({ message: err.message, response: false });
 });
 
 app.listen(3030, res => console.log(`Server on in http://localhost:3030`));

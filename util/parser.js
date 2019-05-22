@@ -28,7 +28,7 @@ exports.bookParser = data => {
       return {
         title: element.volumeInfo.title,
         authors: element.volumeInfo.authors,
-        id: `${element.id}#google`,
+        id: `${element.id}__google`,
         type: "book",
         image: imageLinks && imageLinks.thumbnail ? imageLinks.thumbnail : "N/A"
       };
@@ -45,7 +45,7 @@ exports.omdbParser = data => {
     search: data.Search.map(element => {
       return {
         title: element.Title,
-        id: `${element.imdbID}#omdb`,
+        id: `${element.imdbID}__omdb`,
         type: element.Type,
         image: element.Poster
       };

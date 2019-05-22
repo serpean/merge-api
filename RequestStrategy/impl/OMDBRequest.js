@@ -4,7 +4,7 @@ class OMDBRequest {
   doRequest(id) {
     return axios
       .get(
-        `http://www.omdbapi.com/?i=${id}$plot=full&apikey=${
+        `http://www.omdbapi.com/?i=${id}&plot=full&apikey=${
           process.env.OMDB_API_KEY
         }`
       )
@@ -18,10 +18,14 @@ class OMDBRequest {
 
         return {
           title: response.data.Title,
-          authors: [response.data.Production],
+          authors:
+            response.data.Production !== "N/A"
+              ? [response.data.Production]
+              : [],
           publishDate: response.data.Released,
           description: response.data.Plot,
-          image: response.data.Poster
+          image: response.data.Poster,
+          response: true
         };
       });
   }

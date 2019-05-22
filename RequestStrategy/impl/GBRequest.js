@@ -6,7 +6,7 @@ class GBRequest {
       .get(`https://www.googleapis.com/books/v1/volumes?q=${id}`)
       .then(response => {
         const { totalItems, items } = response.data;
-        if (totalItems !== 1) {
+        if (totalItems < 1) {
           const error = new Error("Invalid ID");
           error.statusCode = 404;
           throw error;
@@ -17,7 +17,8 @@ class GBRequest {
           authors: items[0].volumeInfo.authors,
           publishDate: items[0].volumeInfo.publishDate,
           description: items[0].volumeInfo.description,
-          image: items[0].volumeInfo.imageLinks.thumbnail
+          image: items[0].volumeInfo.imageLinks.thumbnail,
+          response: true
         };
       });
   }
