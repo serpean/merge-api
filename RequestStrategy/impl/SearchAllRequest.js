@@ -32,10 +32,16 @@ class SearchAllRequest {
         const cleanMovies = movies ? omdbParser(movies.data) : emptyParserResponse();
         const cleanBooks = books ? bookParser(books.data) : emptyParserResponse();
 
-        const itemsOutput = [...cleanBooks.search, ...cleanMovies.search, ...cleanGames.search]
-          .sort((a, b) => a.title > b.title);
-        const lengthsOutput = [cleanGames.totalResults, cleanBooks.totalResults, cleanMovies.totalResults]
-          .reduce((acc, curr) => (curr && curr > acc ? curr : acc), 0);
+          const itemsOutput = [
+            ...cleanBooks.search,
+            ...cleanMovies.search,
+            ...cleanGames.search
+          ].sort((a, b) => a.title < b.title);
+          const lengthsOutput = [
+            cleanGames.totalResults,
+            cleanBooks.totalResults,
+            cleanMovies.totalResults
+          ].reduce((acc, curr) => (curr && curr > acc ? curr : acc), 0);
 
         const responseOutput = [cleanGames.response, cleanBooks.response, cleanMovies.response].find(x => x);
 
