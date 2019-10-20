@@ -31,7 +31,7 @@ app.get("/", async (req, res, next) => {
   const type = req.query.type ? `search-${req.query.type}` : "search-all";
   const page = req.query.page;
 
-  if(name === undefined) return res.status(401).json({response: false, message: "Name is required"})
+  if(name === undefined) return res.status(401).json({response: false, message: "Name is required"});
 
   try {
     const factory = new RequestStrategyFactory();
@@ -53,4 +53,4 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).json({ message: err.message, response: false });
 });
 
-app.listen(port, res => console.log(`Server on in port: ${port}`));
+app.listen(port, res => console.log(`Server on in port: http://localhost:${port}`));
