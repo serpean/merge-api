@@ -1,10 +1,11 @@
 {
-  "name": "fetch-resource",
+  "name": "merge-api",
   "version": "1.0.0",
   "main": "index.js",
   "author": "serpean",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "license": "MIT",
   "dependencies": {
