@@ -1,5 +1,5 @@
 # Merge-api
-> Adapter to return canonical information from different APIs.
+> Adapter that return canonical information from different APIs.
 
 Merge different leisure apps to get data with the same interface.  Available APIs:
 - OMDB
